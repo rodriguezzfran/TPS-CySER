@@ -6,7 +6,7 @@
 
 Funciones de los metacaracteres
 
-- \$ y ^ : '$' se usa para matchear una linea que termine con un set de caracteres específico, por ejemplo __successful$__ matcheará cualquier línea que termine con _"successful"_. '^' se usa para matchear una linea que comience con un set de caracteres específico, por ejemplo __^Mission__ matcheará cualquier línea que comience con _"Mission"_. Se usan en conjunto para detectar una linea entera. Por ejemplo para detectar la línea _"Mission: successful"_ se puede usar "^Mission: successful\$"
+- \$ y ^ : '$' se usa para matchear una linea que termine con un set de caracteres específico, por ejemplo __successful$__ matcheará cualquier línea que termine con _"successful"_. '^' se usa para matchear una linea que comience con un set de caracteres específico, por ejemplo __^Mission__ matcheará cualquier línea que comience con _"Mission"_. Se usan en conjunto para detectar una linea entera. Por ejemplo para detectar la línea _"Mission: successful"_ se puede usar __^Mission: successful\$__
 
 - \* : Para indicar cero o más repeticiones de un caracter o un set de caracteres.
 
