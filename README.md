@@ -1,4 +1,80 @@
-# Criptografía y seguridad en redes 
+# Criptografía y seguridad en redes
+
+### Laboratorio 2.A - Ejercicios de REGEX
+
+*__Paso 1__*
+
+Funciones de los metacaracteres
+
+- $ y ^ : Se usan en conjunto para detectar una linea entera. Por ejemplo para detectar la línea _"Mission: successful"_ se puede usar "^Mission: successful\$"
+
+- \* : Para indicar cero o más repeticiones de un caracter o un set de caracteres.
+
+- . : Para referirse a un caracter cualquiera.
+
+- [] : Se pueden usar para matchear caracteres específicos, por ejemplo el patrón __[abc]__ solo matcheará una sola letra a, b o c. De la misma manera se pueden usar para excluir caracteres específicos usando el __'^'__ (hat), ej: __[^abc]__ matcheará cualquier caracter (uno solo) excepto una letra a,b o c. También puede usarse para matchear rangos de caracteres, como todos los caracteres entre el 0 y el 9 (__[0-9]__), todas las letras minusculas entre la A y la Z (__[a-z]__) y con la misma lógica y el __hat__ excluir rangos, por ejemplo excluir el rango entre la h y la m (__[^h-m]__).
+
+- \\. : Como el punto (.) está reservado para matchear cualquier caracter, para matchear un punto literalmente en la expresión, se usa "\\."
+
+- \\d : Para matchear cualquier caracter que sea un dígito.
+
+- \\D : Para matchear cualquier caracter que no sea un dígito.
+
+- {m} y {m,n} : Se refiere a la capacidad para detectar una cantidad m de repeticiones de un determinado caracter. Por ejemplo __a{3}__ matcheará la letra 'a' 3 veces. También se puede especificar un rango de repeticiones, por ejemplo __a{1,8}__ matcheará el caracter no más de 8 veces y no menos de 1. Este cuantificador se puede utilizar con cualquier carácter o metacaracteres especiales, por ejemplo __w{3}__ (tres w), __[wxy]{5}__ (cinco caracteres, cada uno de los cuales puede ser una w, una x o una y) y __.{2,6}__ (entre dos y seis de cualquier carácter).
+
+- abc|123 : OR lógico, también conocido como pipe, sirve para indicar diferentes conjuntos posibles de caracteres. Puedo escribir el patrón "__Comprar más (leche|pan|jugo)__" para que coincida únicamente con las cadenas "Comprar más leche", "Comprar más pan" o "Comprar más jugo".
+
+
+*__Paso 2__*
+
+Algunos patrones de expresiones regulares:
+
+- __^83__ : Matcheará cualquier linea con la palabra "83".
+
+- __[A-Z]{2,4}__ : Matcheará entre 2 y 4 caracteres, los cuales pueden ser cualquier letra mayúscula entre la A y la Z.
+
+- __2015__ : simplemente matcheará la palabra "2015".
+
+- __05:22:2[0-9]__ : matcheará cualquier hora entre las 05:22:20 y las 05:22:29.
+
+- __\\.com__ : matcheará cualquier línea que posea la palabra ".com" en ella.
+
+- __complete|GET__ : matcheará cualquier línea que posea la palabra "complete" o "GET".
+
+- __0{4}__ : matcheará el caracter '0' hasta 4 veces.
+
+*__Paso 3__*
+
+Aplicando las regex anteriores en la VM de Workstation:
+
+- __^83__ :
+
+![regex1](img/regex-1.png)
+
+- __[A-Z]{2,4}__ : 
+
+![regex2](img/regex-2.png)
+
+- __2015__ :
+
+![regex3](img/regex-3.png)
+
+- __05:22:2[0-9]__ :
+
+![regex4](img/regex-4.png)
+
+- __\\.com__ :
+
+![regex5](img/regex-5.png)
+
+- __complete|GET__ :
+
+![regex6](img/regex-6.png)
+
+- __0{4}__ :
+
+![regex7](img/regex-7.png)
+
 ### Laboratorio 2.B - Registro de eventos
 
 ¿Que es un *__registro de eventos__*? Los archivos de registro, son archivos que las computadoras utilizan para registrar eventos. Los programas
