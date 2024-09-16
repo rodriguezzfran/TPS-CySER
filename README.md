@@ -6,7 +6,7 @@
 
 Funciones de los metacaracteres
 
-- $ y ^ : Se usan en conjunto para detectar una linea entera. Por ejemplo para detectar la línea _"Mission: successful"_ se puede usar "^Mission: successful\$"
+- \$ y ^ : '$' se usa para matchear una linea que termine con un set de caracteres específico, por ejemplo __successful$__ matcheará cualquier línea que termine con _"successful"_. '^' se usa para matchear una linea que comience con un set de caracteres específico, por ejemplo __^Mission__ matcheará cualquier línea que comience con _"Mission"_. Se usan en conjunto para detectar una linea entera. Por ejemplo para detectar la línea _"Mission: successful"_ se puede usar "^Mission: successful\$"
 
 - \* : Para indicar cero o más repeticiones de un caracter o un set de caracteres.
 
@@ -29,7 +29,7 @@ Funciones de los metacaracteres
 
 Algunos patrones de expresiones regulares:
 
-- __^83__ : Matcheará cualquier linea con la palabra "83".
+- __^83__ : Matcheará cualquier linea que comience con la palabra "83".
 
 - __[A-Z]{2,4}__ : Matcheará entre 2 y 4 caracteres, los cuales pueden ser cualquier letra mayúscula entre la A y la Z.
 
