@@ -96,6 +96,53 @@ El mensaje "Warning: Permanently added ‘192.168.0.91’ (ED25519) to the list 
 
 ![banner](./img/banner.png)
 
+- Set up de Fail2Ban:
+
+![fail2ban](./img/set-up-f2b.png)
+
+- Cambio del bantime y activación de sshd en el archivo de configuración de Fail2Ban:
+
+![f2b_conf](./img/cambio-ban-time.png)
+
+![f2b_conf2](./img/enable-f2b-sshd.png)
+
+Salida del comando "sudo iptables -L":
+
+```bash
+bruno@PC-Bruno:/etc/fail2ban$ sudo iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy DROP)
+target     prot opt source               destination         
+DOCKER-USER  all  --  anywhere             anywhere            
+DOCKER-ISOLATION-STAGE-1  all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere             ctstate RELATED,ESTABLISHED
+DOCKER     all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere            
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain DOCKER (1 references)
+target     prot opt source               destination         
+
+Chain DOCKER-ISOLATION-STAGE-1 (1 references)
+target     prot opt source               destination         
+DOCKER-ISOLATION-STAGE-2  all  --  anywhere             anywhere            
+RETURN     all  --  anywhere             anywhere            
+
+Chain DOCKER-ISOLATION-STAGE-2 (1 references)
+target     prot opt source               destination         
+DROP       all  --  anywhere             anywhere            
+RETURN     all  --  anywhere             anywhere            
+
+Chain DOCKER-USER (1 references)
+target     prot opt source               destination         
+RETURN     all  --  anywhere             anywhere  
+```
+
 ## Laboratorio 1.B
 
 SSH utiliza contraseñas para la autenticación de forma predeterminada y la mayoría de las
