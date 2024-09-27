@@ -121,6 +121,62 @@ Es diferente porque el primero es un registro de error que se usan para diagnost
 
 Ahora pasaremos a analizar los registros del sistema operativo, los cuales se encuentran en la ruta `/var/log/messages` al ejecutarlo la salida es similar a la siguiente
 
+![image](https://github.com/user-attachments/assets/88fc0ce2-fbb2-43d1-8ea0-314a75e66635)
+
+Allí podemos ver todos los registros de eventos del sistema operativo, incluidos aquellos que mencionan el por que la red estaba inestable y lenta por ese tiempo, resulta que la interfaz *__enp0s3__* estaba sufriendo conexiones y desconexiones constantes, por lo que es un primer acercamiento a sobre como encarar la solución.
+
+### Parte 2: Ubicar archivos de registro en sistemas desconocidos
+
+La VM CyberOps Workstation incluye nginx, un servidor web liviano. En esta sección veremos cómo encontrar y exhibir archivos de registro de nginx utilizando la VM CyberOps Workstation.
+
+Lo primero que tendremos que hacer es verificar que *__nginx__* se está ejecutando en la vm con el siguiente comando `ps ax | grep nginx`
+
+![image](https://github.com/user-attachments/assets/41b7b381-94b1-49cb-a76d-96b697492b05)
+
+en nuestro caso no se estaba ejecutando, así que con el comando `sudo /usr/sbin/nginx` lo ponemos a correr
+
+Ahora resulta que el manual de nginx no daba información sobre dónde estaban los archivos de registro, así que toca buscarlo, para ello primero usaremos `ls /etc/` para ver si hay alguno.
+
+![image](https://github.com/user-attachments/assets/4de05681-5478-4257-8bef-339b5d71a6bb)
+
+Luego de usar el comando vemos que efectivamente si hay una carpeta que hace mención a *__nginx__* y al entrar vemos el archivo `nginx.conf`, si usamos cat para verlo vemos lo siguiente.
+
+![image](https://github.com/user-attachments/assets/2057d74b-7327-4bb7-b22f-940f398be54d)
+
+No hay mención a los archivos de registro. Seguimos la investigación en `/var/log/` 
+
+![image](https://github.com/user-attachments/assets/6ecf3dab-16bf-4072-9b16-600dcc003294)
+
+![image](https://github.com/user-attachments/assets/d9cc033f-c8fc-4297-bbc1-264f4ff92be1)
+
+Como vemos, en la carpeta correspondiendte a *__nginx__* dentro de log hay una serie de archivos que sugieren que se está usando la configuración por defecto y que esos quizás sean los archivos de registro que estamos buscando.
+
+### Parte 3: Monitorear archivos de registro en tiempo real
+
+Esta práctica de laboratorio se enfoca en tail,
+una herramienta simple pero eficiente que está disponible prácticamente en todos los sistemas basados en
+Unix. La idea con esto es poder ver las actualizaciones de los registros en tiempo real.
+
+Si usamos el comando `sudo tail -f /var/log/nginx/access.log` con el `-f` abreviatura de "follow" podemos ver sus actualizaciones en tiempo real
+
+![image](https://github.com/user-attachments/assets/54820430-f7bd-491d-91d5-13bd54d9da93)
+
+como vemos está vacio, pero si vamos a la dirección `127.0.0.1` usando el navegador
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
