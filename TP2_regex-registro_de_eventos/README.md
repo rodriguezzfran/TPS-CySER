@@ -161,7 +161,40 @@ Si usamos el comando `sudo tail -f /var/log/nginx/access.log` con el `-f` abrevi
 
 ![image](https://github.com/user-attachments/assets/54820430-f7bd-491d-91d5-13bd54d9da93)
 
-como vemos está vacio, pero si vamos a la dirección `127.0.0.1` usando el navegador
+como vemos está vacio, pero si vamos a la dirección `127.0.0.1` usando el navegador, que le indica que se conecte a un servidor en la máquina local.
+
+![image](https://github.com/user-attachments/assets/ea581d4a-5bc7-47a6-8db8-5c5cea888a2b)
+
+vemos como tail se actualizó, sugiriendo que si era el archivo de registro que estabamos buscando.
+
+*__Paso 2__*
+
+Resulta que Arch Linux cuenta con otras herramientas, como es el caso de Journalctl
+
+system-journald (o simplemente journald) es el servicio de registro de eventos de systemd y utiliza archivos binarios "append-only" (solo anexar) que actúan como sus archivos de registro.
+
+usando el comando `sudo journalctl` podemos ver la salida completa
+
+![image](https://github.com/user-attachments/assets/dbca0003-938f-4239-b3cb-895350a64f9e)
+
+`sudo journalctl -b -2` podemos filtrar los registros relacionados a los últimos 2 arranques
+
+![image](https://github.com/user-attachments/assets/90231d56-66bc-4066-b162-2eba5d2f2ac5)
+
+`sudo journalctl --list-boots` permite ver los últimos arranques 
+
+![image](https://github.com/user-attachments/assets/80585376-bc3a-4ed3-aa29-a6eb6ce165af)
+
+hay más comandos que permiten filtrar y mostrar salidas entre diferentes fechas, pero lo importante es que Journalctl también permite monitorear eventos del sistema
+
+si usamos `sudo journalctl -u nginx.service -f` y repetimos el expirimento veremos lo siguiente 
+
+![image](https://github.com/user-attachments/assets/93a6debd-f05f-40d7-890e-7cb4e6154d08)
+
+Vemos que también podemos ver la actualización del registro de eventos.
+
+
+
 
 
  
