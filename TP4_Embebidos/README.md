@@ -31,12 +31,12 @@ El primer código probado es el de implementar los algoritmos de _SHA 512_ y _MD
 
 La salida de la ESP32 muestra lo siguiente al cifrar la palabra "Hello, ESP32!"
 
-arduino
+```arduino
 MD5 Hash:
 b98c8142a9341854d5b369baf13577ac
 SHA-512 Hash:
 74c077210927470dd35cdb2c538a9407ec16ed27510ac57e9d85c281683e678e603345ef6d5be6c59009ff611663086f192e7e5493b9ada980218c72551b60c6
-`
+````
 
 Para el segundo código vamos a utilizar encriptación simétrica, el algoritmo de AES
 
@@ -46,7 +46,7 @@ AES es un algoritmo de cifrado simétrico que cifra datos en bloques de 128 bits
 
 La salida muestra lo siguiente
 
-arduino
+```arduino
 Mensaje original:
 Hello, ESP32!
 
@@ -55,8 +55,4 @@ Texto encriptado (hex): 2326522d77bbf20c180bb757c5c494a1
 
 Desencriptando con AES-128...
 Texto desencriptado: Hello, ESP32!
-`
-
-Finalmente implementamos un algoritmo de firma digital
-
-El algoritmo RSA (Rivest-Shamir-Adleman) es un sistema criptográfico de clave pública ampliamente utilizado tanto para cifrar datos como para firmar digitalmente. Fue desarrollado en 1979 y se basa en la dificultad de factorizar grandes números enteros.
+```
