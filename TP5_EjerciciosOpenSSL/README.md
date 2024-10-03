@@ -33,6 +33,52 @@ Ahora para descifrarlo usamos el comando `openssl aes-256-cbc –a -d -in messag
 
 ### Parte 2 - Cifrar y descifrar datos con OpenSSL utilizando criptografía asimétrica
 
+La Criptografía de clave pública utiliza un par de claves por usuario o entidad para brindar servicios de
+seguridad. Una es la clave pública y se puede compartir libremente. La otra clave es privada y se supone que
+es secreta y nunca se comparte.
+
+Este comando utiliza el comando genrsa de OpenSSL para generar un par de claves pública/privada de
+1024 bits. Esto es posible porque el algoritmo RSA es asimétrico. También usa aes128, un algoritmo de
+clave simétrica, para encriptar la clave privada que Alice genera usando genrsa.
+
+![image](https://github.com/user-attachments/assets/d6823838-ff65-47e2-86eb-82e2faa9bee6)
+
+Ahora *__Bob__* genera el mismo procedimiento
+
+![image](https://github.com/user-attachments/assets/73b64302-6aa6-404c-8f34-73e3a0dfae49)
+
+Extraemos la clave pública, que es la que se puede compartir, mientras que la privada queda guardada.
+
+![image](https://github.com/user-attachments/assets/05d5d59e-801c-4986-a743-ec1e2e193863)
+
+El siguiente paso sería que Bob haga lo mismo y compartan entre ellos las claves públicas
+
+Una vez hecho esto, podemos generar un mensaje y cifrarlo de modo que sólo Bob pueda leerlo
+
+Para cifrar este mensaje secreto, Alice necesita utilizar el comando openssls `-encrypt` Para ello,
+Necesita proporcionar estas tres cosas:
+- El nombre del archivo que contiene el mensaje secreto.
+- Clave pública de Bob (archivo)
+- El nombre de un archivo donde se almacenará el mensaje cifrado
+
+![image](https://github.com/user-attachments/assets/2ef2cf8b-73c3-48cb-b3f5-cab4ac1ad035)
+
+Bob necesita hacer su parte descifrando el mensaje usando openssl, pero esta vez usando como
+argumento de línea de comandos -decrypt. Patra lograrlo necesita proporcionar la siguiente
+información:
+- El archivo encriptado (que obtuvo de Alice)
+- La propia clave privada de Bob (para descifrar, ya que se cifró con la clave pública de Bob)
+- Un nombre de archivo para guardar la salida descifrada a través de la redirección
+
+![image](https://github.com/user-attachments/assets/eec9ba59-6f21-4afe-b2cf-b283ea2269fd)
+
+
+
+
+
+
+
+
 
 
 
