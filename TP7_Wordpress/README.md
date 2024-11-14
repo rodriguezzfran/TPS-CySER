@@ -215,3 +215,65 @@ Luego en _Todas las opciones_ se configuró Wordfence de la siguiente manera (lo
 
 
 ### Instalación de algunos pluggins vulnerables
+
+Se instalaron _WooComerce_, _Contact Form 7_ y _Yoast SEO_ .
+
+La parte de exponer la instalación a internet para que se puede hacer un análisis remoto no se pudo llevar a cabo por impedimento de los permisos del router :(.
+
+De todas formas se hizo el análisis de forma local usando  WPScan.
+
+### Análisis con WPScan
+
+Primero hay que instalarlo:
+
+```bash
+sudo apt update
+sudo apt install -y ruby-full
+sudo gem install wpscan
+```
+
+Ahora hacemos el análisis de la instalación de WordPress con este comando:
+
+```bash
+wpscan --url http://localhost --enumerate ap
+```
+
+Donde la opcion _--enumerate p_ es para listar los pluggins instalados y verificar si hay vulnerabilidades conocidas.
+
+Tambien se puede agregar la opcion `--enumerate t` para listar los temas instalados.
+
+Para ver la lista de vulnerabilidades se necesita activar un _API Token_, para el cual hay que registrarse en https://wpscan.com/register.
+
+Después al comando anterior agregarle este flag:
+
+```bash
+--api-token <API_TOKEN>
+```
+
+Finalmente, este fue el resultado del análisis:
+
+![wpscan1](./img/wpscan_1.png)
+![wpscan2](./img/wpscan_2.png)
+![wpscan3](./img/wpscan_3.png)
+
+Como conclusión, lo único alarmante son estos dos hallazgos:
+
+- XML-RPC habilitado:
+
+`XML-RPC seems to be enabled: http://localhost/xmlrpc.php`
+
+XML-RPC permite la comunicación remota con WordPress, pero es conocido por ser un vector de ataque, susceptible a ataques de fuerza bruta y DDoS. Si no se utiliza XML-RPC, se recomienda desactivarlo para reducir el riesgo de explotación.
+
+- WP-Cron Externo Habilitado
+
+`The external WP-Cron seems to be enabled: http://localhost/wp-cron.php`
+
+Aunque WP-Cron es útil para la programación de tareas, su habilitación puede ser explotada si no se gestiona adecuadamente.
+
+- Directorio de Carga con Listado Habilitado
+
+`Upload directory has listing enabled: http://localhost/wp-content/uploads/`
+
+El listado habilitado en el directorio de cargas puede permitir a los atacantes acceder a archivos sensibles. Hay que deshabilitar esta función en la configuración de Apache para proteger la información.
+
+En cuanto a los pluggines, estos estan todos actualizados a su última versión y no presentan vulnerabilidades conocidas.
