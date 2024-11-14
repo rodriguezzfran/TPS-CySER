@@ -256,7 +256,7 @@ Finalmente, este fue el resultado del análisis:
 ![wpscan2](./img/wpscan_2.png)
 ![wpscan3](./img/wpscan_3.png)
 
-Como conclusión, lo único alarmante son estos dos hallazgos:
+Como conclusión, lo único alarmante son estos tres hallazgos:
 
 - XML-RPC habilitado:
 
